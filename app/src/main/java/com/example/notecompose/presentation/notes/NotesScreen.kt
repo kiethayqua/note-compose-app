@@ -1,5 +1,6 @@
 package com.example.notecompose.presentation.notes
 
+import android.content.Intent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -33,9 +34,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.notecompose.presentation.TestActivity
 import com.example.notecompose.presentation.notes.components.NoteItem
 import com.example.notecompose.presentation.notes.components.OrderSection
 import com.example.notecompose.presentation.util.Screen
@@ -46,6 +49,7 @@ fun NotesScreen(
     navController: NavController,
     viewModel: NotesViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
     val state = viewModel.state.value
     val scope = rememberCoroutineScope()
     val snackBarHostState = remember { SnackbarHostState() }
@@ -56,6 +60,7 @@ fun NotesScreen(
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
+//                context.startActivity(Intent(context, TestActivity::class.java))
                 navController.navigate(Screen.AddEditNoteScreen.route)
             }, containerColor = MaterialTheme.colorScheme.primary) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
