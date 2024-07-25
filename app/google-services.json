@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "570884551517",
+    "project_id": "test-note-8ff32",
+    "storage_bucket": "test-note-8ff32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570884551517:android:215bf3a24f1b4323d4aeb4",
+        "android_client_info": {
+          "package_name": "com.example.notecompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7yLe2CICzoMw7Ht27CXwwiEUfD8g95MA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
