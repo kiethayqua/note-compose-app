@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.example.notecompose.domain.model.Note
 import com.example.notecompose.presentation.add_edit_note.componnents.TransparentHintTextField
 import kotlinx.coroutines.flow.collectLatest
@@ -49,6 +50,12 @@ fun AddEditNoteScreen(
 ) {
     val titleState = viewModel.noteTitle.value
     val contentState = viewModel.noteContent.value
+//    val localViewModelStoreOwner = LocalViewModelStoreOwner.current
+//
+//    LaunchedEffect(Unit) {
+//         optimize use hiltViewModel in post: https://medium.com/androiddevelopers/dependency-injection-in-compose-a2db897e6f11
+//        println("KIET_DEBUG_localViewModelStoreOwner: $localViewModelStoreOwner")
+//    }
 
     val noteBackgroundAnimatable = remember {
         Animatable(

@@ -111,8 +111,6 @@ fun MainBottomNavigation(
                     navigateToAddEditNote = {
                         navController.navigate(it)
                     },
-                    // optimize use hiltViewModel in post: https://medium.com/androiddevelopers/dependency-injection-in-compose-a2db897e6f11
-                    viewModel = hiltViewModel()
                 )
             }
             composable<Settings> {
@@ -139,7 +137,6 @@ fun MainBottomNavigation(
                         navController.navigateUp()
                     },
                     noteColor = color,
-                    viewModel = hiltViewModel()
                 )
             }
         }
