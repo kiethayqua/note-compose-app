@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -37,6 +38,7 @@ private data class BottomNavItem(
     val route: Any,
     val icon: ImageVector
 )
+
 @Composable
 fun MainBottomNavigation(
     navController: NavHostController = rememberNavController()
@@ -105,9 +107,13 @@ fun MainBottomNavigation(
             startDestination = Notes
         ) {
             composable<Notes> {
-                NotesScreen(navigateToAddEditNote = {
-                    navController.navigate(it)
-                })
+                NotesScreen(
+                    navigateToAddEditNote = {
+                        navController.navigate(it)
+                    },
+                    // optimize use hiltViewModel in post: https://medium.com/androiddevelopers/dependency-injection-in-compose-a2db897e6f11
+                    viewModel = hiltViewModel()
+                )
             }
             composable<Settings> {
                 SettingsScreen()
@@ -132,7 +138,8 @@ fun MainBottomNavigation(
                     onBack = {
                         navController.navigateUp()
                     },
-                    noteColor = color
+                    noteColor = color,
+                    viewModel = hiltViewModel()
                 )
             }
         }
