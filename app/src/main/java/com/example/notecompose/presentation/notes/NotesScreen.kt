@@ -1,6 +1,5 @@
 package com.example.notecompose.presentation.notes
 
-import android.content.Intent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -14,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,26 +30,23 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.example.notecompose.presentation.TestActivity
 import com.example.notecompose.presentation.notes.components.NoteItem
 import com.example.notecompose.presentation.notes.components.OrderSection
-import com.example.notecompose.presentation.util.Screen
+import com.example.notecompose.presentation.util.AddEditNote
 import kotlinx.coroutines.launch
 
 @Composable
 fun NotesScreen(
-    navController: NavController,
+    navigateToAddEditNote: (AddEditNote) -> Unit = {},
     viewModel: NotesViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
     val state = viewModel.state.value
     val scope = rememberCoroutineScope()
     val snackBarHostState = remember { SnackbarHostState() }
@@ -59,19 +56,21 @@ fun NotesScreen(
             SnackbarHost(hostState = snackBarHostState)
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = {
-//                context.startActivity(Intent(context, TestActivity::class.java))
-                navController.navigate(Screen.AddEditNoteScreen.route)
-            }, containerColor = MaterialTheme.colorScheme.primary) {
+            FloatingActionButton(
+                onClick = {
+                    navigateToAddEditNote(AddEditNote())
+                },
+                containerColor = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.navigationBarsPadding()
+            ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
             }
         }
-    ) { paddingValues ->
+    ) { _ ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .padding(top = paddingValues.calculateTopPadding())
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -111,10 +110,7 @@ fun NotesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                navController.navigate(
-                                    Screen.AddEditNoteScreen.route +
-                                            "?noteId=${note.id}&noteColor=${note.color}"
-                                )
+                                navigateToAddEditNote(AddEditNote(note.id!!, note.color))
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))

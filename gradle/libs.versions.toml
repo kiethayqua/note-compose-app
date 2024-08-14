@@ -1,6 +1,6 @@
 [versions]
-agp = "7.4.2"
-kotlin = "1.9.10"
+agp = "8.4.2"
+kotlin = "1.9.23"
 daggerHilt = "2.49"
 ksp = "1.9.10-1.0.13"
 coreKtx = "1.13.1"
@@ -9,14 +9,16 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.2.0"
 activityCompose = "1.9.0"
-composeBom = "2023.08.00"
+composeBom = "2024.05.00"
 lifecycleViewmodelCompose = "2.2.0"
-navigationCompose = "2.7.7"
+navigationCompose = "2.8.0-alpha08"
 kotlinxCoroutinesAndroid = "1.8.1"
 room = "2.6.1"
 hiltNavigationCompose = "1.2.0"
 googleServices = "4.4.2"
 firebaseCrashlytics = "2.9.9"
+serializationVersion = "1.6.3"
+composeMaterial = "1.6.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +40,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "composeMaterial" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 # Coroutines
@@ -52,6 +55,9 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
+# Serialization
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationVersion" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -59,3 +65,4 @@ google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.re
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices"}
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

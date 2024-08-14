@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.serialization)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -44,7 +46,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packagingOptions {
         excludes += "META-INF/*"
@@ -76,6 +78,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.compose.material)
 
     // Coroutines
     implementation(libs.kotlinx.kotlinx.coroutines.android)
@@ -88,4 +91,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
 }

@@ -1,6 +1,18 @@
 package com.example.notecompose.presentation.util
 
-sealed class Screen(val route: String) {
-    data object NotesScreen: Screen("notes_screen")
-    data object AddEditNoteScreen: Screen("add_edit_note_screen")
-}
+import kotlinx.serialization.Serializable
+
+@Serializable
+object Notes
+
+@Serializable
+data class AddEditNote(
+    val noteId: Int = -1,
+    val noteColor: Int = -1
+)
+
+@Serializable
+object HomeBottom
+
+@Serializable
+object Settings
