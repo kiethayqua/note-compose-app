@@ -61,16 +61,16 @@ fun NotesScreen(
                     navigateToAddEditNote(AddEditNote())
                 },
                 containerColor = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.navigationBarsPadding()
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
             }
         }
-    ) { _ ->
+    ) { paddings ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(horizontal = 16.dp)
+                .padding(top = paddings.calculateTopPadding())
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

@@ -1,6 +1,7 @@
 package com.example.notecompose.presentation.navigation
 
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigation
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -101,10 +102,11 @@ fun MainBottomNavigation(
                 }
             }
         }
-    ) { _ ->
+    ) { paddings ->
         NavHost(
             navController = navController,
-            startDestination = Notes
+            startDestination = Notes,
+            modifier = Modifier.padding(bottom = paddings.calculateBottomPadding())
         ) {
             composable<Notes> {
                 NotesScreen(

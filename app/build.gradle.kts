@@ -44,6 +44,9 @@ android {
     }
     buildFeatures {
         compose = true
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.11"
@@ -65,6 +68,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,6 +83,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui.viewbinding)
 
     // Coroutines
     implementation(libs.kotlinx.kotlinx.coroutines.android)
@@ -94,4 +99,8 @@ dependencies {
 
     // Serialization
     implementation(libs.kotlinx.serialization.json)
+
+    // GysoTreeView
+    implementation(libs.androidx.dynamicanimation)
+    implementation(libs.gyso.treeview)
 }
